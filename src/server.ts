@@ -248,9 +248,7 @@ async function start(): Promise<void> {
   try {
     await knowledgeBaseHealthCheck();
   } catch (err) {
-    console.error("[Server] Knowledge base health check failed:", (err as Error).message);
-    console.error("[Server] Run `npm run scrape` first, then restart the server.");
-    process.exit(1);
+    console.warn("[Server] Knowledge base empty — scrape not yet run.");
   }
 
   app.listen(PORT, () => {

@@ -12,7 +12,8 @@
     "test": "ts-node src/test.ts",
     "client": "vite --config vite.config.ts",
     "typecheck": "tsc --noEmit",
-    "build:client": "vite build --config vite.config.ts"
+    "build:client": "vite build --config vite.config.ts",
+    "build:full": "npm run build && npm run build:client && npm run scrape"
   },
   "dependencies": {
     "@lancedb/lancedb": "^0.9.0",
