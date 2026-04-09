@@ -19,6 +19,7 @@ import { runAnalyzer } from "./analyzer";
 import { orchestrate } from "./orchestrator";
 import { runSpeaker } from "./speaker";
 import { knowledgeBaseHealthCheck } from "./rag";
+import * as path from "path";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Config
@@ -219,6 +220,18 @@ app.get("/session/:id", async (req: Request, res: Response) => {
 
   return res.status(200).json(state);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Serve React frontend in production
+// ─────────────────────────────────────────────────────────────────────────────
+
+if (NODE_ENV === "production") {
+  const clientPath = path.join(__dirname, "../client");
+  app.use(express.static(clientPath));
+  app.get("/", (_req: Request, res: Response) => {
+    res.sendFile(path.join(clientPath, "index.html"));
+  });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GET /health
