@@ -11,7 +11,8 @@
     "scrape:watch": "ts-node scripts/scrape.ts",
     "test": "ts-node src/test.ts",
     "client": "vite --config vite.config.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:client": "vite build --config vite.config.ts"
   },
   "dependencies": {
     "@lancedb/lancedb": "^0.9.0",
