@@ -84,6 +84,7 @@ FIELDS TO EXTRACT:
 RULES:
 - specificProduct: set ONLY if user explicitly names a different product than current
 - PRONOUN RESOLUTION: if the user says "it", "this", "the device", "does it", "can it", "how does it" without naming a product, they are referring to the CURRENT product in focus shown in CURRENT SESSION STATE below. Do NOT change specificProduct in this case — leave it as empty string so the orchestrator keeps the current product.
+- SHORT MESSAGE RULE: if the user sends 3 words or fewer (e.g. "2015", "yes", "how much", "what about"), NEVER change specificProduct. It is a follow-up to the current topic. Leave specificProduct as empty string.
 - urgency = "buying-now" if user signals purchase intent ("I'll take it", "how to order", "কিনতে চাই")
 - compareProducts: set if user asks "what's the difference between X and Y"
 - questionTopic: classify the user's question to help the Speaker prioritise knowledge chunks

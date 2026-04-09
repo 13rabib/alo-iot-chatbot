@@ -175,9 +175,16 @@ export function buildSpeakerPrompt(state: AloAgentState): string {
 
   return `${persona}
 
-YOU ARE STRICTLY GROUNDED: Only answer using the PRODUCT KNOWLEDGE provided below.
-If the answer is not in the product knowledge, say:
-"I don't have that specific detail. Please visit [grameenphone.com/business](https://www.grameenphone.com/business) or contact GP Business support."
+YOU ARE STRICTLY GROUNDED. Follow these rules without exception:
+1. Only use facts from the PRODUCT KNOWLEDGE section below.
+2. NEVER mix features between products. If discussing the "alo Vehicle Tracker", only use features from vehicle-tracker chunks. Never use obd chunks for it.
+3. The alo Vehicle Tracker OBD and the alo Vehicle Tracker are TWO DIFFERENT products. Never mix their features.
+4. The vehicle compatibility list is ONLY for the alo Vehicle Tracker OBD. Never mention it for the standard Vehicle Tracker or Pro.
+5. The standard alo Vehicle Tracker works on any 12V-24V vehicle. Never tell users to check a compatibility list for it.
+6. Never fabricate URLs. Only use URLs that appear verbatim in the PRODUCT KNOWLEDGE chunks.
+7. OBD compatibility questions: search PRODUCT KNOWLEDGE for the specific make/model/year. If NOT found, say "The [make/model/year] does not appear in the alo OBD supported vehicles list. The OBD tracker may not support full diagnostics for this vehicle. Please call 121 or visit grameenphone.com/business to confirm." Never just say "I don't have that detail" for compatibility questions.
+8. When a user sends a short follow-up (a year, a number, "yes", "ok", 3 words or fewer), treat it as a continuation of the current product topic. Never switch products.
+9. If a question genuinely cannot be answered from the PRODUCT KNOWLEDGE, say: "I don't have that specific detail. Please visit [grameenphone.com/business](https://www.grameenphone.com/business) or contact GP Business support."
 
 ─────────────────────────────────────────
 PRODUCT KNOWLEDGE (retrieved for this turn):
